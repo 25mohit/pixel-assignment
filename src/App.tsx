@@ -5,6 +5,7 @@ import '@xyflow/react/dist/style.css';
 import SelectDropdown from './components/Utils/SelectDropdown';
 import PaymentNode from './components/Utils/PaymentNode';
 import PaymentInitialize from './components/Utils/PaymentInitialize';
+import CustomEdge from './components/Utils/CustomEdge';
 
 const initialNodes: Node[] = [
   {
@@ -33,21 +34,24 @@ const nodesType = {
   'paymentInitialize' : PaymentInitialize,
 }
 
-const initialEdges:[] = []
+const initialEdges: Edge [] = []
+
+const edgeTypes = {
+  'custom-edge': CustomEdge
+}
 
 function App() {
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
 
-  console.log("nodes", nodes);
   const onConnect = useCallback((connection: Connection) => {
     const generateId = () => Math.random().toString(36).substr(2, 9);
 
     const edge: Edge = {...connection, animated: true, id: `${generateId()}`, type: 'custom-edge'}
 
     setEdges((prevEdge): any => addEdge(edge, prevEdge))
-  },[]) 
+  },[edges]) 
 
   return (
     <div className="App">
@@ -56,7 +60,7 @@ function App() {
           nodes={nodes}
           nodeTypes={nodesType}
           edges={edges}
-          // edgeTypes={}
+          edgeTypes={edgeTypes}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
