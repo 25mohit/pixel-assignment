@@ -1,24 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Background, ReactFlow } from '@xyflow/react';
+import '@xyflow/react/dist/style.css';
+import SelectDropdown from './components/Utils/SelectDropdown';
+
+const initialNodes = [
+  {
+    id: 'in-1',
+    type: 'paymentInit',
+    position: {x: 0, y: 0},
+    data: {}
+  }
+]
+
+const nodesType = {
+  'paymentInit' : SelectDropdown
+}
 
 function App() {
+
+  const [nodes, setNodes] = useState(initialNodes)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div className="container">
+        <ReactFlow 
+          nodes={nodes}
+          nodeTypes={nodesType}
         >
-          Learn React
-        </a>
-      </header>
+          <Background />
+        </ReactFlow>
+      </div>
     </div>
   );
 }
