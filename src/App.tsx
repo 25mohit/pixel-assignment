@@ -10,13 +10,13 @@ const initialNodes: Node[] = [
   {
     id: 'in-1',
     type: 'paymentInit',
-    position: {x: 0, y: 0},
+    position: {x: 175, y: 20},
     data: {}
   },
   {
     id: 'no-0',
     type: 'paymentInitialize',
-    position: {x: 0, y: 150},
+    position: {x: 0, y: 200},
     data: {value: 'Start'}
   },
   {

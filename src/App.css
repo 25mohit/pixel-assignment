@@ -31,7 +31,11 @@
   padding: 0.2rem 0.8rem;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
   background-color: white;
+}
+.paymentNode .icon-close{
+  color: red;
 }
 .pay-initialize{
   border: 1px solid purple;
