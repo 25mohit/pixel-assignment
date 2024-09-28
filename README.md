@@ -6,7 +6,7 @@ First You need to clone This Repository, then
 Then
 ### `npm start`
 
-**Note: I have Completed the assignment and covers below features.**
+**I developed an interactive canvas where users can add, delete, and manage provider nodes with unique constraints. Key functionalities include:**
 
 1. I have provided a dropdown from which userc can add Providers Node.
 
