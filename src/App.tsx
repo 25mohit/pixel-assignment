@@ -13,7 +13,8 @@ const initialNodes: Node[] = [
     id: 'in-1',
     type: 'paymentInit',
     position: {x: 175, y: 20},
-    data: {}
+    data: {},
+    draggable: false
   },
   {
     id: 'no-0',
@@ -37,8 +38,11 @@ const edgeTypes = {
 
 function App() {
 
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
+  const savedData = localStorage.getItem('savedData');
+  const isLocalDataExists = savedData ? JSON.parse(savedData) : null;
+  
+  const [nodes, setNodes, onNodesChange] = useNodesState(isLocalDataExists !== null ? [...initialNodes, ...isLocalDataExists?.n] : initialNodes)
+  const [edges, setEdges, onEdgesChange] = useEdgesState(isLocalDataExists !== null ? [...initialEdges, ...isLocalDataExists?.e] : initialEdges)
 
   const onConnect = useCallback((connection: Connection) => {
     const generateId = () => Math.random().toString(36).substr(2, 9);
@@ -48,8 +52,6 @@ function App() {
     setEdges((prevEdge): any => addEdge(edge, prevEdge))
   },[edges]) 
 
-  console.log("nodes", nodes, edges);
-  
   return (
     <div className="App">
       <div className="container">

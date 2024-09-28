@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const options = [
     { key: 'St', value: 'Stripe' },
-    { key: 'Ap', value: 'Amazon Pay' },
+    { key: 'Az', value: 'Amazon Pay' },
     { key: 'Gp', value: 'Google Pay' },
     { key: 'Ap', value: 'Apple Pay' },
     { key: 'Pp', value: 'Paypal' },
@@ -12,10 +12,9 @@ const options = [
 
 const SelectDropdown = () => {
     const { setNodes, getNodes } = useReactFlow()
-    const [errorMessage, setErrorMessage] = useState<string | null>(null); // State to store error message
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    
     const randomNum = Math.random() * 200
-
-    console.log('errorMessage', errorMessage);
     
     const onChangeHandler = (e: any) => {
         const value = e.target.value?.split('--+--')
@@ -26,7 +25,6 @@ const SelectDropdown = () => {
         const nodeExists = currentNodes.some((node) => node.data.key === value?.[0]);
 
         if (nodeExists) {
-            // Set error message if node already exists
             setErrorMessage("Already Present");
         } else {
             setErrorMessage(null);
