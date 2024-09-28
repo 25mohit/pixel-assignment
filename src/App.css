@@ -29,6 +29,15 @@
   padding-bottom: 0.2rem;
   font-style: italic;
 }
+.message{
+  color: green;
+  font-style: italic;
+  font-size: 0.8rem;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  width: 50%;
+}
 .select select{
   border: none;
   outline: none;
@@ -68,6 +77,8 @@
   justify-content: left;
   gap: 0.4rem;
   align-items: center;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.39);
 }
 .btn{
   padding: 0.2rem 0.4rem;
@@ -81,15 +92,17 @@
   gap: 0.4rem;
   box-shadow: 0 0 5px 1px rgba(40,40,40,0.4);
   transition: 0.5s;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 .btn:hover{
   cursor: pointer;
 }
 .btn.primary{
-  background-color: orange;
+  background-color: rgba(255, 166, 0, 0.807);
 }
 .btn.danger{
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.742);
 }
 .control-bar .excel{
   color: green;

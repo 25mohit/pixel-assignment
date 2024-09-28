@@ -7,13 +7,24 @@ const ControlBar = ({ edges, nodes }: any) => {
     
     const [isDataExists, setIsDataExists] = useState(localStorage.getItem('savedData'))
     const [error, setError] = useState('')
+    const [message, setMessage] = useState('')
+
+    function removeMessage() {
+      setTimeout(() => {
+        setMessage('')
+      },3000)
+    }
 
     const onSaveHandler = () => {
-        localStorage.setItem("savedData", JSON.stringify({e: edges, n: nodes}))
+      localStorage.setItem("savedData", JSON.stringify({e: edges, n: nodes}))
+      setMessage('Flow Data Saved to LocalStorage')
+      removeMessage()
     }    
-
+    
     const onClearHandler = () => {
-        localStorage.removeItem('savedData')
+      localStorage.removeItem('savedData')
+      setMessage('Flow Data Removed from LocalStorage')
+      removeMessage()
     }
     
     const exportToExcel = () => {
@@ -24,7 +35,7 @@ const ControlBar = ({ edges, nodes }: any) => {
           return {
             'Id': d?.id,
             'Node Type': d?.type,
-            'Code': d.data.key,
+            'Provider Code': d.data.key,
             'Payment Provider': d.data.value,
             'pX': d?.position?.x,
             'pY': d?.position?.y,
@@ -33,10 +44,7 @@ const ControlBar = ({ edges, nodes }: any) => {
         return null
       }).filter(Boolean)
 
-      console.log("nodesData", nodesData);
-
       if(nodesData?.length){    
-        setError('')    
         const worksheet = XLSX.utils.json_to_sheet(nodesData);
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
@@ -44,6 +52,9 @@ const ControlBar = ({ edges, nodes }: any) => {
         XLSX.writeFile(workbook, `ReactFlow-${formattedDate}.xlsx`);
       } else {
         setError("Please Add some Nodes before Exporting")
+        setTimeout(() => {
+          setError('')
+        },3000)
       }
     };
   return (
@@ -51,7 +62,8 @@ const ControlBar = ({ edges, nodes }: any) => {
         <button className='btn primary' onClick={onSaveHandler}>Save Flow</button>
         { isDataExists !== null && <button className='btn danger' onClick={onClearHandler}>Clear Saved Data</button> }
         <SiMicrosoftexcel onClick={exportToExcel} className='excel'/>
-        <p className="error">{error}</p>
+        {error && <p className="error">{error}</p>}
+        {message && <p className='message'>{message}</p>}
     </div>
   )
 }
