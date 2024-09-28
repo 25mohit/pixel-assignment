@@ -1,4 +1,5 @@
 import { Node, useReactFlow } from "@xyflow/react"
+import { useState } from "react";
 
 const options = [
     { key: 'St', value: 'Stripe' },
@@ -10,17 +11,28 @@ const options = [
 ]
 
 const SelectDropdown = () => {
-    const { setNodes } = useReactFlow()
+    const { setNodes, getNodes } = useReactFlow()
+    const [errorMessage, setErrorMessage] = useState<string | null>(null); // State to store error message
     const randomNum = Math.random() * 200
 
+    console.log('errorMessage', errorMessage);
+    
     const onChangeHandler = (e: any) => {
         const value = e.target.value?.split('--+--')
         const generateId = () => Math.random().toString(36).substr(2, 9);
-
-        console.log(value);
         
-        setNodes((prevNodes) => [...prevNodes, { id: `${generateId()}`, data: {key: value?.[0], value: value?.[1]}, position: {x: randomNum, y: randomNum}, type: 'paymentNode'}])
+        if (!value) return
+        const currentNodes = getNodes();
+        const nodeExists = currentNodes.some((node) => node.data.key === value?.[0]);
 
+        if (nodeExists) {
+            // Set error message if node already exists
+            setErrorMessage("Already Present");
+        } else {
+            setErrorMessage(null);
+
+            setNodes((prevNodes) => [...prevNodes, { id: `${generateId()}`, data: {key: value?.[0], value: value?.[1]}, position: {x: randomNum, y: randomNum}, type: 'paymentNode'}])
+        }
     }
 
   return (
@@ -31,6 +43,7 @@ const SelectDropdown = () => {
                 options?.map((option, index) => <option key={index} value={`${option?.key}--+--${option?.value}`}>{option?.value}</option>)
             }
         </select>
+        { errorMessage !== null && <p className="error">Node Already in Canvas</p> }
     </div>
   )
 }

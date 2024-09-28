@@ -6,6 +6,7 @@ import SelectDropdown from './components/Utils/SelectDropdown';
 import PaymentNode from './components/Utils/PaymentNode';
 import PaymentInitialize from './components/Utils/PaymentInitialize';
 import CustomEdge from './components/Utils/CustomEdge';
+import ControlBar from './components/ControlBar';
 
 const initialNodes: Node[] = [
   {
@@ -19,12 +20,6 @@ const initialNodes: Node[] = [
     type: 'paymentInitialize',
     position: {x: 0, y: 200},
     data: {value: 'Start'}
-  },
-  {
-    id: 'no-1',
-    type: 'paymentNode',
-    position: {x: 0, y: 0},
-    data: {}
   }
 ]
 
@@ -53,9 +48,12 @@ function App() {
     setEdges((prevEdge): any => addEdge(edge, prevEdge))
   },[edges]) 
 
+  console.log("nodes", nodes, edges);
+  
   return (
     <div className="App">
       <div className="container">
+        <ControlBar edges={edges} nodes={nodes}/>
         <ReactFlow 
           nodes={nodes}
           nodeTypes={nodesType}
