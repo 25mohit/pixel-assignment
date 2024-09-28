@@ -27,8 +27,8 @@ const ControlBar = ({ edges, nodes }: any) => {
       removeMessage()
     }
     
+    // Function for Exporting Current Nodes Data to a Excel File
     const exportToExcel = () => {
-
       const nodesData = nodes?.map((d: any)=> {
         
         if (d?.data && d?.data?.key !== undefined && d?.data?.value !== undefined) {
@@ -57,6 +57,7 @@ const ControlBar = ({ edges, nodes }: any) => {
         },3000)
       }
     };
+    
   return (
     <div className='control-bar'>
         <button className='btn primary' onClick={onSaveHandler}>Save Flow</button>

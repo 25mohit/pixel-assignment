@@ -36,6 +36,8 @@ const SelectDropdown = () => {
   return (
     <div className='select'>
         <select name="paymentProvider-select" id="" onChange={onChangeHandler}>
+
+            {/* Mapping Payment Provider Options*/}
             <option value="">--- Select Payment Provider ---</option>
             {
                 options?.map((option, index) => <option key={index} value={`${option?.key}--+--${option?.value}--+--${option?.amount}`}>{option?.value}</option>)

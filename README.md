@@ -6,7 +6,7 @@ First You need to clone This Repository, then
 Then
 ### `npm start`
 
-**Note: I have Completed the assignment and cover below features.**
+**Note: I have Completed the assignment and covers below features.**
 
 1. I have provided a dropdown from which userc can add Providers Node.
 
@@ -32,4 +32,4 @@ Then
 
 12. Added Feature to export flow data in Excel Format for future use.
 
-### `Note: There is a Feature Requirement in Assignment that, user can able to Redo and Undo the Tasks, but for that I didn't have Paid React-Flow NPM Package. That Feature only avaiable in Paid React-Flow NPM Package.`
+### `Note: There is a Feature Requirement in Assignment that, user can able to Redo and Undo the Tasks, but for that I didn't have Paid React-Flow NPM Package. That Feature only available in Paid React-Flow NPM Package.`
