@@ -6,9 +6,44 @@
   min-height: 100vh;
 }
 .container{
-  width: 350px;
+  width: 600px;
   aspect-ratio: 1/1;
   box-shadow: 0 0 10px 1px rgba(40,40,40,0.4);
   padding: 0.6rem;
   border-radius: 10px;
+}
+
+.select{
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px 1px rgba(40,40,40,0.25);
+  background-color: white;
+}
+.select select{
+  border: none;
+  outline: none;
+  padding: 0.2rem 0.4rem;
+  text-align: center;
+}
+.paymentNode{
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 0.2rem 0.8rem;
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
+.pay-initialize{
+  border: 1px solid purple;
+
+}
+.pay-initialize .head{
+  background-color: purple;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+.pay-initialize .section{
+  padding: 0.6rem 0.4rem;
 }
