@@ -9,6 +9,7 @@ const PaymentNode = ({ data, id}: any) => {
     <div className='paymentNode'>
         <Handle type='target' position={Position.Left}/>
         {data?.value}
+        <span>$ {data?.amount}</span>
         <IoClose className='icon-close' onClick={() => setNodes((prev): any => prev.filter(d => d.id !== id))}/>
     </div>
   )

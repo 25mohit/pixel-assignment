@@ -4,7 +4,7 @@ import { IoClose } from "react-icons/io5";
 const CustomEdge = (props: any) => {
     const { id, sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition } = props    
 
-    const [edgePath, labelX, labelY] = getBezierPath({sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition})
+    const [ edgePath, labelX, labelY] = getBezierPath({sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition})
     
     const { setEdges } = useReactFlow()
     const offsetX = -300;

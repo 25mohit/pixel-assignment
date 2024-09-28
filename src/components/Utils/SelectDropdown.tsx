@@ -1,14 +1,14 @@
-import { Node, useReactFlow } from "@xyflow/react"
+import { useReactFlow } from "@xyflow/react"
 import { useState } from "react";
 
 const options = [
-    { key: 'St', value: 'Stripe' },
-    { key: 'Az', value: 'Amazon Pay' },
-    { key: 'Gp', value: 'Google Pay' },
-    { key: 'Ap', value: 'Apple Pay' },
-    { key: 'Pp', value: 'Paypal' },
-    { key: 'Up', value: 'UPI' },
-]
+    { key: 'St', value: 'Stripe', amount: 456 },
+    { key: 'Az', value: 'Amazon Pay', amount: 234 },
+    { key: 'Gp', value: 'Google Pay', amount: 789 },
+    { key: 'Ap', value: 'Apple Pay', amount: 321 },
+    { key: 'Pp', value: 'Paypal', amount: 678 },
+    { key: 'Up', value: 'UPI', amount: 543 },
+];
 
 const SelectDropdown = () => {
     const { setNodes, getNodes } = useReactFlow()
@@ -29,7 +29,7 @@ const SelectDropdown = () => {
         } else {
             setErrorMessage(null);
 
-            setNodes((prevNodes) => [...prevNodes, { id: `${generateId()}`, data: {key: value?.[0], value: value?.[1]}, position: {x: randomNum, y: randomNum}, type: 'paymentNode'}])
+            setNodes((prevNodes) => [...prevNodes, { id: `${generateId()}`, data: {key: value?.[0], value: value?.[1], amount: value?.[2]}, position: {x: randomNum, y: randomNum}, type: 'paymentNode'}])
         }
     }
 
@@ -38,7 +38,7 @@ const SelectDropdown = () => {
         <select name="paymentProvider-select" id="" onChange={onChangeHandler}>
             <option value="">--- Select Payment Provider ---</option>
             {
-                options?.map((option, index) => <option key={index} value={`${option?.key}--+--${option?.value}`}>{option?.value}</option>)
+                options?.map((option, index) => <option key={index} value={`${option?.key}--+--${option?.value}--+--${option?.amount}`}>{option?.value}</option>)
             }
         </select>
         { errorMessage !== null && <p className="error">Node Already in Canvas</p> }
